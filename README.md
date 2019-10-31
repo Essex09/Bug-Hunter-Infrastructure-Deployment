@@ -1,6 +1,6 @@
 # Bug-Hunter-Infrastructure-Deployment
 
-Place the digital_ocean.ini and digital_ocean.py files into /etc/ansible. Be sure to update digital_ocean.ini with your api token.
+Place the digital_ocean.ini and digital_ocean.py files into /etc/ansible. Be sure to update digital_ocean.ini with your api token. (source: https://github.com/geerlingguy/ansible-for-devops/tree/master/dynamic-inventory/digitalocean)
 
 Be sure to review the plan before building.To plan your Digital Ocean infrastructure, run the following commands:
 
