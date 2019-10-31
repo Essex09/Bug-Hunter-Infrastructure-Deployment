@@ -8,8 +8,8 @@ variable "ssh_keys" {}
 ###################################################
 ###### Create tags                       ##########
 ###################################################
-resource "digitalocean_tag" "nginx" {
-    name = "nginx"
+resource "digitalocean_tag" "bughunter" {
+    name = "bughunter"
 }
 
 ###################################################
@@ -24,15 +24,15 @@ provider "digitalocean" {
 ###### Droplet Settings                  ##########
 ###################################################
 
-resource "digitalocean_droplet" "nginx_server" {
-    name = "nginx-server"
+resource "digitalocean_droplet" "bughunter_server" {
+    name = "bughunter-server"
     image = "ubuntu-16-04-x64"
     size = "512mb"
     region = "sfo2"
     ipv6 = "true"
     private_networking = "false"
     monitoring = "true"
-    tags = ["${digitalocean_tag.nginx.name}"]
+    tags = ["${digitalocean_tag.bughunter.name}"]
     ssh_keys = ["${var.ssh_keys}"]
 }
 
@@ -40,9 +40,9 @@ resource "digitalocean_droplet" "nginx_server" {
 ###### Create a firewall for our droplet ##########
 ###################################################
 
-resource "digitalocean_firewall" "webserver" {
-    name = "webserver-firewall"
-    droplet_ids = ["${digitalocean_droplet.nginx_server.id}"]
+resource "digitalocean_firewall" "bughunter" {
+    name = "bughunter-firewall"
+    droplet_ids = ["${digitalocean_droplet.bughunter_server.id}"]
 
     inbound_rule {
         protocol = "tcp"
@@ -100,9 +100,9 @@ resource "digitalocean_firewall" "webserver" {
 }
 
 output "Public_IP" {
-  value = "${digitalocean_droplet.nginx_server.ipv4_address}"
+  value = "${digitalocean_droplet.bughunter_server.ipv4_address}"
 }
 
 output "Name" {
-  value = "${digitalocean_droplet.nginx_server.name}"
+  value = "${digitalocean_droplet.bughunter_server.name}"
 }
