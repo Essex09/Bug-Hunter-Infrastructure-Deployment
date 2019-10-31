@@ -27,7 +27,7 @@ provider "digitalocean" {
 resource "digitalocean_droplet" "bughunter_server" {
     name = "bughunter-server"
     image = "ubuntu-16-04-x64"
-    size = "512mb"
+    size = "s-1vcpu-1gb"
     region = "sfo2"
     ipv6 = "true"
     private_networking = "false"
