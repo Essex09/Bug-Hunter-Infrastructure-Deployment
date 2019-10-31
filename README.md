@@ -18,7 +18,7 @@ To install all of your bug hunting tools, run the following command:
             
     ansible-playbook ./bughunter.yml -i /etc/ansible/digital_ocean.py --private-key /root/.ssh/id_rsa 
     
-Currently builds Ubuntu 16.04 x64 and installs the following tools. Check out bughunter.yml for full details on what's installed.
+Currently builds Ubuntu 16.04 x64 or Debian 10 x64 1GB/1VCPU Droplet and installs the following tools. Check out bughunter.yml for full details on what's installed.
 * Nmap
 * SQLMap
 * Dirsearch
