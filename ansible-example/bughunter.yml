@@ -1,6 +1,6 @@
 ---
 - name: pretasks
-  hosts: nginx
+  hosts: bughunter
   remote_user: root
   gather_facts: false
   tasks:
