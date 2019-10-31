@@ -2,10 +2,9 @@
 
 Place the digital_ocean.ini and digital_ocean.py files into /etc/ansible. Be sure to update digital_ocean.ini with your api token.
 
-To build your Digital Ocean infrastructure, run the following commands:
-* Be sure to review the plan before building.
+Be sure to review the plan before building.To plan your Digital Ocean infrastructure, run the following commands:
 
-      terraform plan
+    terraform plan
  
  Build it:
  
