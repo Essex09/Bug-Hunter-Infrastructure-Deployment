@@ -19,6 +19,7 @@
            - python3-pip
            - sqlmap
            - python-pip
+           - dnsutils
          state: present
 
     - name: Install dirsearch
