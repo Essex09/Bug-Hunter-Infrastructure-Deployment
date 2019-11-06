@@ -47,7 +47,7 @@ resource "digitalocean_firewall" "bughunter" {
     inbound_rule {
         protocol = "tcp"
         port_range = "22"
-        source_addresses = ["47.152.61.20"]
+        source_addresses = ["INSERT IP"]
     }
 
     inbound_rule {
