@@ -33,7 +33,7 @@ Currently builds Ubuntu 16.04 x64 or Debian 10 x64 1GB/1VCPU Droplet and install
 ## Lightsail
 
 1) Create an API key with AWS. Run `aws configure` to set the API keys.
-2) Create SSH keys with AWS
+2) Create SSH keys with AWS. Be sure to change the key pair name in bughunter.tf.
                 
         chmod 400 /path/to/keypair.pem
         
