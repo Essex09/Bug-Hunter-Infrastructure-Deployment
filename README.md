@@ -29,3 +29,19 @@ Currently builds Ubuntu 16.04 x64 or Debian 10 x64 1GB/1VCPU Droplet and install
 * Scrapy
 * WPScan
 * Joomscan
+
+## Lightsail
+
+1) Create an API key with AWS. Run `aws configure` to set the API keys.
+2) Create SSH keys with AWS
+                
+        chmod 400 /path/to/keypair.pem
+        
+3) Install RVM Ansible Role    
+    
+        ansible-galaxy install rvm.ruby
+  
+4) After running `terraform apply`, edit the hosts file to add the IP address terraform outputs. 
+5) Install all of the tools with ansible.
+            
+        ansible-playbook ./debian.yml -i hosts --private-key /path/to/keypair.pem
