@@ -9,7 +9,7 @@ resource "aws_lightsail_instance" "bughunter" {
   availability_zone = "us-west-2a"
   blueprint_id      = "debian_9_5"
   bundle_id         = "micro_2_0"
-  key_pair_name     = "MAC"
+  key_pair_name     = "CHANGETHIS"
 }
 
 resource "aws_security_group" "bughunter" {
