@@ -1,0 +1,104 @@
+---
+- name: Set up BugHunter
+  hosts: bughunter
+  remote_user: admin
+  become: yes
+  gather_facts: false
+  roles:
+    - { role: rvm.ruby,
+        tags: ruby,
+        become: yes,
+        rvm1_rubies: ['ruby-2.6'],
+        rvm1_install_flags: '--auto-dotfiles',     # Remove --user-install from defaults
+        rvm1_install_path: /usr/local/rvm,         # Set to system location
+        rvm1_user: root                            # Need root account to access system location
+      }
+      
+  tasks:
+    - name: Update all packages
+      apt:
+        upgrade: dist
+        update_cache: yes
+        cache_valid_time: 3600
+
+    - name: Install packages
+      apt:
+         name:
+           - git
+           - nmap
+           - python3-pip
+           - sqlmap
+           - python-pip
+         state: present
+
+    - name: Install dirsearch
+      git:
+        repo: https://github.com/maurosoria/dirsearch.git
+        clone: yes
+        dest: /opt/tools/dirsearch
+
+    - name: Clone SecLists
+      git:
+        repo: https://github.com/danielmiessler/SecLists.git
+        clone: yes
+        dest: /opt/tools/SecLists
+
+    - name: Install Knockpy
+      git:
+        repo: https://github.com/santiko/KnockPy.git
+        clone: yes
+        dest: /opt/tools/knockpy
+
+    - name: Install Wfuzz
+      apt:
+        name:
+          - wfuzz
+
+    - name: Clone Sublist3r
+      git:
+        repo: https://github.com/aboul3la/Sublist3r.git
+        clone: yes
+        dest: /opt/tools/Sublist3r
+
+    - name: Install Sublist3r
+      shell: pip install -r /opt/tools/Sublist3r/requirements.txt
+
+    - name: Scrapy Dependencies
+      apt:
+        name:
+          - python-dev
+        state: present
+
+    - name: Install Scrapy
+      pip:
+        name: scrapy
+        state: present
+
+    - name: WPScan Dependencies
+      apt:
+        name:
+          - gcc
+          - ruby
+          - ruby-dev
+          - libcurl4-openssl-dev
+          - make
+          - zlib1g-dev
+        state: present
+
+    - gem:
+        name: wpscan
+        version: 3.7.0
+        state: present
+        user_install: no
+        include_doc: yes
+
+    - name: Joomscan Dependencies
+      apt:
+        name:
+          - libwww-perl
+
+    - name: Install Joomscan
+      git:
+        repo: https://github.com/rezasp/joomscan.git
+        clone: yes
+        dest: /opt/tools/joomscan
